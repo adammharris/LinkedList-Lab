@@ -40,15 +40,15 @@ public:
 		clear();
 	}
 	void insertHead(T value) { 
+    Node* iter = head;
+    if (isInList(value, iter))
+			return;
 		Node* newHead = new Node();
 		newHead->data = value;
 		if (head == NULL) {
 			head = newHead;
 			return;
 		}
-		Node* iter = head;
-		if (isInList(value, iter))
-			return;
 		Node* oldHead = head;
 		head = newHead;
 		head->next = oldHead;
@@ -111,7 +111,7 @@ public:
 		do {
 			remove(head->data);
 		} while (head->next != NULL);
-		Node* toDelete = head;
+    Node* toDelete = head;
 		head = NULL;
 		delete toDelete;
 	}
